@@ -1,0 +1,18 @@
+  <h1><%= @list.name %></h1>
+  <p>
+  <ul>
+    <% @list.movies.each do |movie| %>
+    <li><%= movie.title %>
+  <%end %>
+    </ul>
+  </p>
+
+  <div class="container">
+  <h1>Add a movie to the list</h1>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
