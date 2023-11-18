@@ -7,10 +7,10 @@
   </div>
 </div>
 
-<div class="cards">
+<div class="cards m-4">
     <% @lists.each do |list| %>
 
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/assets/images/comedy.png)">
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(list.photo.key) %>')">
     <%= link_to list.name, list_path(list)%>
   </div>
 
@@ -21,6 +21,7 @@
 <div class="container m-5">
     <%= simple_form_for(@new_list) do |f| %>
       <%= f.input :name %>
+      <%= f.input :photo, as: :file %>
       <%= f.submit "Add a new list", class: "btn btn-flat" %>
     <% end %>
 </div>
