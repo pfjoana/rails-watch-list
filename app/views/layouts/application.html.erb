@@ -19,7 +19,7 @@
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
   <%# logo %>
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to "root_path", class: "navbar-brand" do %>
       <%= image_tag "logo.png" %>
     <% end %>
 
@@ -31,7 +31,7 @@
       <ul class="navbar-nav me-auto">
         <%# if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "My lists", "/index", class: "nav-link Mytext-color" %>
+            <%= link_to "My lists", root_path, class: "nav-link Mytext-color" %>
           </li>
           <%# <li class="nav-item">
             <%= link_to "Add list", "/index", class: "nav-link Mytext-color" %>

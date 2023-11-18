@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       redirect_to list_path(@list)
     else
-      render 'lists/show', status: :unprocessable_entity
+      render '/show', status: :unprocessable_entity
     end
   end
 
