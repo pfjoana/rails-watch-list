@@ -1,18 +1,44 @@
-  <h1><%= @list.name %></h1>
-  <p>
-  <ul>
-    <% @list.movies.each do |movie| %>
-    <li><%= movie.title %>
-  <%end %>
-    </ul>
-  </p>
 
-  <div class="container">
-  <h1>Add a movie to the list</h1>
+
+<div class="banner banner-show">
+  <div class="container text-center">
+    <h1><%= @list.name %></h1>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
+
+
+<%# ## Card grid %>
+<div class="cards m-5">
+  <% @list.movies.each do |movie| %>
+      <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+
+<%# ## Card trip %>
+  <div class="card-trip m-1">
+    <img src= <%= movie.poster_url %> />
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= movie.title %></h2>
+        <p><%= movie.overview %></p>
+      </div><br>
+      <h2 class="card-trip-pricing mx-2"><i class="fa-solid fa-star" style="color: #f9c206;"></i><%= movie.rating %></h2>
+      <%= link_to "delete", bookmark_path(bookmark), class: "btn btn-warning mt--5", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+
+<%#  Form add new movie %>
+  <div class="container m-5">
   <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.input :comment %>
   <%= f.association :movie %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
+  <%= f.submit "+ Add movie to this list", class: "btn btn-flat" %>
   <% end %>
-
 </div>
+
+  <div class="container m-5">
+    <%= link_to "<- Back to Lists",  lists_path, class: "btn btn-flat" %>
+  </div>

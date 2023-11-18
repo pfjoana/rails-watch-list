@@ -3,6 +3,7 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    @new_list = List.new
   end
 
   def show
@@ -15,13 +16,11 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    # @list.save
-    # redirect_to list_path(@list)
 
     if @list.save
       redirect_to list_path(@list)
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -34,6 +33,4 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:name)
   end
-
-
 end

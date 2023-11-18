@@ -1,11 +1,26 @@
-<div class="container">
-  <h1>Lists</h1>
 
-  <ul>
+<div class="banner banner-index">
+  <div class="container text-center">
+    <h1>All about movies!</h1>
+    <p>Here you can organize your lists</p>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
+
+<div class="cards">
     <% @lists.each do |list| %>
-      <li><%= link_to list.name, list_path(list)%></li>
-    <% end %>
-  </ul>
 
-  <p><%= link_to "+Add a new list",  new_list_path, class: "btn btn-primary" %></p>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/assets/images/comedy.png)">
+    <%= link_to list.name, list_path(list)%>
+  </div>
+
+    <% end %>
+
+</div>
+
+<div class="container m-5">
+    <%= simple_form_for(@new_list) do |f| %>
+      <%= f.input :name %>
+      <%= f.submit "Add a new list", class: "btn btn-flat" %>
+    <% end %>
 </div>
